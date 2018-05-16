@@ -1,5 +1,7 @@
 class RepositoriesController < ApplicationController
   def index
+    access_hash = {}
+    access_hash["access_token"] = session[:token]
     github = GithubService.new
     @repos_array = github.get_repos
     # response = Faraday.get "https://api.github.com/user/repos", {}, {'Authorization' => "token #{session[:token]}", 'Accept' => 'application/json'}
